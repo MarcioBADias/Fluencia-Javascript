@@ -145,6 +145,23 @@ console.log(values)
 let accumulator = 0
 const oddNumbers = [51, 97, 65, 23]
 
+const forEach = (array, func) => {
+  for(let index = 0; index < array.length; index++){
+    const item = array[index]
+    func(item, index, array)
+  }
+}
+
+const logMessage = (item, index, array) =>{
+  console.log(`"${item}" é o ${index+1}º item do array [${array.join(', ')}]`)
+}
+
+const sumAccumulator = item => accumulator += item
+
+forEach(oddNumbers, logMessage)
+forEach(oddNumbers, sumAccumulator)
+console.log(accumulator)
+
 /*
   07
 
