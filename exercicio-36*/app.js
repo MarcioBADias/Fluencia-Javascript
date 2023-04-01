@@ -190,3 +190,34 @@ console.log(accumulator)
     3 No passo 3.4, se o slide exibido atualmente não corresponder ao index do 
       1º slide, o slide anterior deve ser exibido.
 */
+
+const buttonNext = document.querySelector('[data-js="carousel__button--next"]')
+const buttonPrev = document.querySelector('[data-js="carousel__button--prev"]')
+const slides = document.querySelectorAll('[data-js="carousel__item"')
+let slideCounter = 0
+
+buttonNext.addEventListener('click', () => {
+  slides.forEach((slide, index)=> {
+    slide.setAttribute('class', 'carousel__item carousel__item--hidden')
+    if(slideCounter === index){
+      slide.setAttribute('class', 'carousel__item carousel__item--visible')
+    }
+  })
+  if(slideCounter < slides.length-1){
+    slideCounter++
+  }else{
+    slideCounter = 0
+  }
+})
+
+buttonPrev.addEventListener('click', () => {
+  slides.forEach((slide, index)=> {
+    slide.setAttribute('class', 'carousel__item carousel__item--hidden')
+    if(slideCounter === index){
+      slide.setAttribute('class', 'carousel__item carousel__item--visible')
+    }
+  })
+  slideCounter < slides.length && slideCounter--
+  if(slideCounter < 0 ) slideCounter+=3
+})
+
