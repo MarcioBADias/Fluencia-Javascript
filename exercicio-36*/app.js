@@ -194,35 +194,25 @@ console.log(accumulator)
 const buttonNext = document.querySelector('[data-js="carousel__button--next"]')
 const buttonPrev = document.querySelector('[data-js="carousel__button--prev"]')
 const slides = document.querySelectorAll('[data-js="carousel__item"')
+
 let slideCounter = 0
 
-buttonNext.addEventListener('click', () => {
-  if(slideCounter < slides.length-1){
-    slideCounter++
-  }else{
-    slideCounter = 0
-  }
-
+const setSlideClass = () => {
   slides.forEach((slide, index)=> {
     slide.setAttribute('class', 'carousel__item carousel__item--hidden')
     if(slideCounter === index){
       slide.setAttribute('class', 'carousel__item carousel__item--visible')
     }
   })
+}
+
+buttonNext.addEventListener('click', () => {
+  slideCounter < slides.length-1? slideCounter++:slideCounter = 0
+  setSlideClass()
 })
 
 buttonPrev.addEventListener('click', () => {
-  if(slideCounter === 0){
-    slideCounter = slides.length-1
-  }else{
-    slideCounter--
-  }
-
-  slides.forEach((slide, index)=> {
-    slide.setAttribute('class', 'carousel__item carousel__item--hidden')
-    if(slideCounter === index){
-      slide.setAttribute('class', 'carousel__item carousel__item--visible')
-    }
-  })
+  slideCounter === 0 ? slideCounter = slides.length-1 : slideCounter--
+  setSlideClass()
 })
 
