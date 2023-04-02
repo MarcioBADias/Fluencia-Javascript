@@ -197,27 +197,32 @@ const slides = document.querySelectorAll('[data-js="carousel__item"')
 let slideCounter = 0
 
 buttonNext.addEventListener('click', () => {
-  slides.forEach((slide, index)=> {
-    slide.setAttribute('class', 'carousel__item carousel__item--hidden')
-    if(slideCounter === index){
-      slide.setAttribute('class', 'carousel__item carousel__item--visible')
-    }
-  })
   if(slideCounter < slides.length-1){
     slideCounter++
   }else{
     slideCounter = 0
   }
-})
 
-buttonPrev.addEventListener('click', () => {
   slides.forEach((slide, index)=> {
     slide.setAttribute('class', 'carousel__item carousel__item--hidden')
     if(slideCounter === index){
       slide.setAttribute('class', 'carousel__item carousel__item--visible')
     }
   })
-  slideCounter < slides.length && slideCounter--
-  if(slideCounter < 0 ) slideCounter+=3
+})
+
+buttonPrev.addEventListener('click', () => {
+  if(slideCounter === 0){
+    slideCounter = slides.length-1
+  }else{
+    slideCounter--
+  }
+
+  slides.forEach((slide, index)=> {
+    slide.setAttribute('class', 'carousel__item carousel__item--hidden')
+    if(slideCounter === index){
+      slide.setAttribute('class', 'carousel__item carousel__item--visible')
+    }
+  })
 })
 
